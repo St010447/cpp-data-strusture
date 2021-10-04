@@ -14,15 +14,7 @@ class LinkedList
 public:
     ListNode *head = new ListNode();
     ListNode *current = new ListNode();
-    void append(int input)
-    {
-        ListNode *new_node = new ListNode();
-        current = head;
-        new_node->data = input;
-        for (; current->next != 0; current = current->next)
-            cout << current->next;
-        current->next = new_node;
-    }
+    ListNode *before_current = new ListNode();
     void print_data()
     {
         if (head->next == 0)
@@ -34,17 +26,55 @@ public:
             current = head;
             while (current->next != 0)
             {
+                before_current = current;
                 current = current->next;
                 cout << current->data << "->";
             }
-            cout << 'Null';
+            cout << "Null" << endl;
         }
     }
+    void append_tail(int input)
+    {
+        ListNode *new_node = new ListNode();
+
+        current = head;
+        new_node->data = input;
+
+        for (; current->next != 0; before_current = current, current = current->next)
+            ;
+        cout << current->data << "before is " << before_current->data << endl;
+        current->next = new_node;
+    }
+    void remove_tail()
+    {
+        current = head;
+        while (current->next != 0)
+        {
+            before_current = current;
+            current = current->next;
+        }
+        // current->data = 0;
+        before_current->next = 0;
+    }
+    // void append_first()
+    // {
+    // }
+    // void append_first()
+    // {
+    // }
 };
 
 main()
 {
     LinkedList *A = new LinkedList();
-    A->append(20);
+    A->append_tail(10);
+    A->append_tail(20);
+    A->append_tail(30);
+    A->append_tail(40);
     A->print_data();
+
+    A->remove_tail();
+    A->print_data();
+    // A->remove_tail();
+    // A->print_data();
 }
