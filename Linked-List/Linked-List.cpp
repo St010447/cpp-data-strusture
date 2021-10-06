@@ -72,6 +72,37 @@ public:
         head->next = first_Node->next;
         delete first_Node;
     }
+    void delete_node(int target)
+    {
+        ListNode *pre_ref = new ListNode;
+        bool hitData;
+        current = head;
+        if (target == 0)
+        {
+            cout << "data can't use 0" << endl;
+        }
+        else
+        {
+
+            for (current = head; current->next != 0; pre_ref = current, current = current->next)
+            {
+                if (current->data == target)
+                {
+                    hitData = 1;
+                    break;
+                }
+            }
+            if (hitData == 1)
+            {
+                pre_ref->next = current->next;
+                delete current;
+            }
+            else
+            {
+                cout << "not found" << endl;
+            }
+        }
+    }
 };
 
 main()
@@ -83,6 +114,9 @@ main()
     A->print_data();
     A->append_first(30);
     A->print_data();
+    A->delete_node(20);
+    A->print_data();
+
     // A->remove_tail();
     // A->print_data();
 }
