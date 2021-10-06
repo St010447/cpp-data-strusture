@@ -56,24 +56,32 @@ public:
         // current->data = 0;
         before_current->next = 0;
     }
-    // void append_first()
-    // {
-    // }
-    // void append_first()
-    // {
-    // }
+    void append_first(int input)
+    {
+        ListNode *new_node = new ListNode();
+        new_node->data = input;
+        new_node->next = head->next;
+        head->next = new_node;
+    }
+    void remove_first()
+    {
+        ListNode *first_Node = new ListNode();
+
+        first_Node = head->next;
+
+        head->next = first_Node->next;
+        delete first_Node;
+    }
 };
 
 main()
 {
     LinkedList *A = new LinkedList();
-    A->append_tail(10);
-    A->append_tail(20);
-    A->append_tail(30);
-    A->append_tail(40);
+    A->append_first(10);
     A->print_data();
-
-    A->remove_tail();
+    A->append_first(20);
+    A->print_data();
+    A->append_first(30);
     A->print_data();
     // A->remove_tail();
     // A->print_data();
