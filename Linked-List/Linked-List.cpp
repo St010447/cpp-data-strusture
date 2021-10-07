@@ -141,6 +141,12 @@ public:
             }
         }
     }
+    void reverse()
+    {
+        ListNode *current = new ListNode();
+        delete current;
+        current = head->next;
+    }
 };
 
 main()
