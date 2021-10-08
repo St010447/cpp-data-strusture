@@ -67,6 +67,7 @@ public:
             current = current->next;
         }
         // current->data = 0;
+        delete current;
         pre_current->next = 0;
     }
     void append_first(int input)
