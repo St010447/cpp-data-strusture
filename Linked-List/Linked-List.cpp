@@ -51,7 +51,7 @@ public:
 
         for (; current->next != 0; pre_current = current, current = current->next)
             ;
-        cout << current->data << "before is " << pre_current->data << endl;
+
         current->next = new_node;
     }
     void remove_tail()
@@ -168,12 +168,12 @@ public:
 main()
 {
     LinkedList *A = new LinkedList();
-    A->append_first(1);
-    A->append_first(2);
-    A->append_first(3);
-    A->append_first(4);
-    A->append_first(5);
-    A->append_first(6);
+    A->append_tail(1);
+    A->append_tail(2);
+    A->append_tail(3);
+    A->append_tail(4);
+    A->append_tail(5);
+    A->append_tail(6);
     A->print_data();
     A->reverse();
     A->print_data();
