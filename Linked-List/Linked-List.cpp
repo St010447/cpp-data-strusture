@@ -143,16 +143,40 @@ public:
     }
     void reverse()
     {
+        ListNode *pre_current = new ListNode();
+        delete pre_current;
         ListNode *current = new ListNode();
         delete current;
+        ListNode *next_node = new ListNode();
+        delete next_node;
         current = head->next;
+        pre_current = 0;
+        next_node = current->next;
+        while (next_node != 0)
+        {
+            current->next = pre_current;
+            pre_current = current;
+            current = next_node;
+            next_node = next_node->next;
+        }
+        current->next = pre_current;
+
+        head->next = current;
     }
 };
 
 main()
 {
     LinkedList *A = new LinkedList();
-
+    A->append_first(1);
+    A->append_first(2);
+    A->append_first(3);
+    A->append_first(4);
+    A->append_first(5);
+    A->append_first(6);
+    A->print_data();
+    A->reverse();
+    A->print_data();
     // A->remove_tail();
     // A->print_data();
 }
