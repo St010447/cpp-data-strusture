@@ -13,15 +13,13 @@ public:
 class LinkedList
 {
 public:
-    ListNode *head = new ListNode();
+    ListNode *head = nullptr;
 
     void print_data()
     {
 
-        ListNode *current = new ListNode();
-        delete current;
-        ListNode *pre_current = new ListNode();
-        delete pre_current;
+        ListNode *current = nullptr;
+        ListNode *pre_current = nullptr;
         if (head->next == 0)
         {
             cout << "list is empty" << endl;
@@ -40,26 +38,32 @@ public:
     }
     void append_tail(int input)
     {
-        ListNode *current = new ListNode();
-        delete current;
-        ListNode *pre_current = new ListNode();
-        delete pre_current;
+        ListNode *current = nullptr;
+        ListNode *pre_current = nullptr;
         ListNode *new_node = new ListNode();
+        if (head == NULL)
+        {
+            new_node->data = input;
+            head->next = new_node;
+        }
+        else
+        {
+            current = head;
+            new_node->data = input;
 
-        current = head;
-        new_node->data = input;
+            while (current->next != 0)
+            {
+                pre_current = current;
+                current = current->next;
+            }
 
-        for (; current->next != 0; pre_current = current, current = current->next)
-            ;
-
-        current->next = new_node;
+            current->next = new_node;
+        }
     }
     void remove_tail()
     {
-        ListNode *current = new ListNode();
-        delete current;
-        ListNode *pre_current = new ListNode();
-        delete pre_current;
+        ListNode *current = nullptr;
+        ListNode *pre_current = nullptr;
         current = head;
         while (current->next != 0)
         {
@@ -72,8 +76,7 @@ public:
     }
     void append_first(int input)
     {
-        ListNode *current = new ListNode();
-        delete current;
+        ListNode *current = nullptr;
 
         ListNode *new_node = new ListNode();
         new_node->data = input;
@@ -82,11 +85,9 @@ public:
     }
     void remove_first()
     {
-        ListNode *current = new ListNode();
-        delete current;
+        ListNode *current = nullptr;
 
-        ListNode *first_Node = new ListNode();
-        delete first_Node;
+        ListNode *first_Node = nullptr;
 
         first_Node = head->next;
 
@@ -96,8 +97,7 @@ public:
     void node_len()
     {
         int count = 0;
-        ListNode *current = new ListNode();
-        delete current;
+        ListNode *current = nullptr;
         current = head;
         while (current->next != 0)
         {
@@ -109,10 +109,8 @@ public:
     void delete_node(int target)
     {
 
-        ListNode *current = new ListNode();
-        delete current;
-        ListNode *pre_current = new ListNode();
-        delete pre_current;
+        ListNode *current = nullptr;
+        ListNode *pre_current = nullptr;
 
         bool hitData;
         current = head;
@@ -144,12 +142,9 @@ public:
     }
     void reverse()
     {
-        ListNode *pre_current = new ListNode();
-        delete pre_current;
-        ListNode *current = new ListNode();
-        delete current;
-        ListNode *next_node = new ListNode();
-        delete next_node;
+        ListNode *pre_current = nullptr;
+        ListNode *current = nullptr;
+        ListNode *next_node = nullptr;
         current = head->next;
         pre_current = 0;
         next_node = current->next;
