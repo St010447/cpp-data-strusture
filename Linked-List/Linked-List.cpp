@@ -7,13 +7,13 @@ class ListNode
 public:
     int data;
     ListNode *next; //C++ null=0
-    ListNode() : data(0), next(0){};
-    ListNode(int a) : data(a), next(0){};
+    ListNode() : data(0), next(nullptr){};
+    ListNode(int a) : data(a), next(nullptr){};
 };
 class LinkedList
 {
 public:
-    ListNode *head = nullptr;
+    ListNode *head = new ListNode();
 
     void print_data()
     {
@@ -41,7 +41,7 @@ public:
         ListNode *current = nullptr;
         ListNode *pre_current = nullptr;
         ListNode *new_node = new ListNode();
-        if (head == NULL)
+        if (head == nullptr)
         {
             new_node->data = input;
             head->next = new_node;
