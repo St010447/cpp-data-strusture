@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+using namespace std;
 
 class TreeNode
 {
@@ -14,39 +16,25 @@ class BinaryTree
 {
     TreeNode *head = new TreeNode();
     TreeNode *current = nullptr;
+    TreeNode *sibling = nullptr;
 
-    void append_right(int input)
+public:
+    void print_inOrder(TreeNode *current)
     {
-        current = current->right;
-        if (current->data != 0)
+
+        if (current)
         {
-            append_node(input);
+            print_inOrder(current->left);
+            cout << current->data;
+            print_inOrder(current->right);
         }
         else
         {
-            current->data = input;
+            cout << "empty tree" << endl;
         }
-    }
-    void append_left(int input)
-    {
-        current = current->left;
-        if (current->data != 0)
-        {
-            append_node(input);
-        }
-        else
-        {
-            current->data = input;
-        }
-    }
-    void append_node(int input)
-    {
-        // switch ()
-        // {
-
-        // }
     }
 };
 main()
 {
+    BinaryTree *A = new BinaryTree;
 }
