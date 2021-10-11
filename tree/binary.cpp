@@ -36,5 +36,5 @@ public:
 };
 main()
 {
-    BinaryTree *A = new BinaryTree;
+    BinaryTree *A = new BinaryTree;123
 }
