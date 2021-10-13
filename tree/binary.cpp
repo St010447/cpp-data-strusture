@@ -23,9 +23,16 @@ public:
 
         if (current)
         {
-            print_inOrder(current->left);
-            cout << current->data << " ";
-            print_inOrder(current->right);
+            if (current->data == NULL)
+            {
+                cout << "empty" << endl;
+            }
+            else
+            {
+                print_inOrder(current->left);
+                cout << current->data << " ";
+                print_inOrder(current->right);
+            }
         }
     }
     void print_preOrder(TreeNode *current)
@@ -91,11 +98,22 @@ public:
     {
         TreeNode *current = nullptr;
         TreeNode *keepRef = nullptr;
+        if (current == 0)
+        {
+            current = temp;
+        }
 
         if (current->data == input)
         {
             keepRef = current;
-            if (current == current->parent->right)
+            if (current == head)
+            {
+                delete current;
+                head->left = nullptr;
+                head->right = nullptr;
+                head->data = NULL;
+            }
+            else if (current == current->parent->right)
             {
                 if (current->left)
                 {
@@ -105,6 +123,12 @@ public:
                     current = current->left;
                     while (current->right)
                     {
+                        current = current->right;
+                    }
+                    if (keepRef->right)
+                    {
+                        current->right = keepRef->right;
+                        keepRef->right->parent = current;
                     }
                 }
                 else if (current->right)
@@ -112,24 +136,39 @@ public:
                     current->parent->right = current->right;
                     current->right->parent = current->parent;
                 }
+                if (keepRef->right == 0 && keepRef->left == 0)
+                {
+                    keepRef->parent->right = nullptr;
+                }
                 delete keepRef;
             }
-            if (current == current->parent->left)
+            else if (current == current->parent->left)
             {
                 if (current->left)
                 {
 
-                    current->parent->right = current->left;
+                    current->parent->left = current->left;
                     current->left->parent = current->parent;
+                    current = current->left;
+                    while (current->right)
+                    {
+                        current = current->right;
+                    }
+                    if (keepRef->right)
+                    {
+                        current->right = keepRef->right;
+                        keepRef->right->parent = current;
+                    }
                 }
                 else if (current->right)
                 {
-                    current->parent->right = current->right;
+                    current->parent->left = current->right;
                     current->right->parent = current->parent;
                 }
-                else
+
+                if ((keepRef->right == 0) && (keepRef->left == 0))
                 {
-                    current->parent->left = nullptr;
+                    keepRef->parent->left = nullptr;
                 }
                 delete keepRef;
             }
@@ -161,11 +200,20 @@ int main()
     cout << "in order is ";
     A->print_inOrder(A->head);
     cout << endl;
-    cout << "pre order is ";
 
-    A->print_preOrder(A->head);
+    A->delete_node(5, A->head);
+    A->print_inOrder(A->head);
     cout << endl;
-    cout << "post order is ";
-    A->print_postOrder(A->head);
+    A->delete_node(15, A->head);
+    A->print_inOrder(A->head);
+    cout << endl;
+    A->delete_node(30, A->head);
+    A->print_inOrder(A->head);
+    cout << endl;
+    A->delete_node(50, A->head);
+    A->print_inOrder(A->head);
+    cout << endl;
+    A->delete_node(10, A->head);
+    A->print_inOrder(A->head);
     cout << endl;
 }
